@@ -36,6 +36,10 @@ namespace GeorgeShopAndRecipe.Infrastructure.Data.Models
         public Category Category { get; set; } = null!;
 
         [Required]
+        [Comment("Recipe image url")]
+        public string ImageUrl {  get; set; } = string.Empty;
+
+        [Required]
         public ICollection<Ingredient> Ingredients { get; set; } = new List<Ingredient>();
     }
 }

@@ -19,6 +19,10 @@ namespace GeorgeShopAndRecipe.Infrastructure.Data.Models
         public string PhoneNumber { get; set; } = string.Empty;
 
         [Required]
+        [Comment("Shop image url")]
+        public string ImageUrl { get; set; } = string.Empty;
+
+        [Required]
         public ICollection<Ingredient> Ingredients { get; set; } = new List<Ingredient>();
 
         [Required]

@@ -29,5 +29,9 @@ namespace GeorgeShopAndRecipe.Infrastructure.Data.Models
 
         [Required]
         public DateTime ExpireDate { get; set; }
+
+        [Required]
+        [Comment("Ingredient image url")]
+        public string ImageUrl { get; set; } = string.Empty;
     }
 }
