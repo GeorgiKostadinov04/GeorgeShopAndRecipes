@@ -29,8 +29,7 @@ namespace GeorgeShopAndRecipe.Infrastructure.Data.Models
         public IdentityUser Publisher { get; set; } = null!;
 
         [Required]
-        public string CategoryId {  get; set; } = string.Empty;
-
+        public int CategoryId {  get; set; }
         [Required]
         [ForeignKey(nameof(CategoryId))]
         public Category Category { get; set; } = null!;
