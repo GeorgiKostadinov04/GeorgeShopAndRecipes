@@ -23,5 +23,19 @@ namespace GeorgeShopAndRecipe.Infrastructure.Data.Constants
         public const int IngredientNameMinLength = 3;
         public const int IngredientCategoryMaxLength = 20;
         public const int IngredientCategoryMinLength = 3;
+
+        //Shop
+        public const int ShopNameMaxLength = 20;
+        public const int ShopNameMinLength = 2;
+
+        //Supplier
+        public const int SupplierFirstNameMaxLength = 50;
+        public const int SupplierFirstNameMinLength = 4;
+        public const int SupplierLastNameMaxLength = 50;
+        public const int SupplierLastNameMinLength = 4;
+        public const int SupplierAgeMaxValue = 99;
+        public const int SupplierAgeMinValue = 18;
+        public const double SupplierRatingMinValue = 0;
+        public const double SupplierRatingMaxValue = 5;
     }
 }
