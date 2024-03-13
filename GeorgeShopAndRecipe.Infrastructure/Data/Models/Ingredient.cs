@@ -21,5 +21,8 @@ namespace GeorgeShopAndRecipe.Infrastructure.Data.Models
         [Required]
         [MaxLength(IngredientCategoryMaxLength)]
         public string Category { get; set; } = string.Empty;
+
+        [Required]
+        public DateTime ExpireDate { get; set; }
     }
 }
