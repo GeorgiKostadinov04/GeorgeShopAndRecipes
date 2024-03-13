@@ -17,5 +17,11 @@ namespace GeorgeShopAndRecipe.Infrastructure.Data.Constants
         //Category
         public const int CategoryNameMaxLength = 30;
         public const int CategoryNameMinLength = 5;
+
+        //Ingredient
+        public const int IngredientNameMaxLength = 50;
+        public const int IngredientNameMinLength = 3;
+        public const int IngredientCategoryMaxLength = 20;
+        public const int IngredientCategoryMinLength = 3;
     }
 }
