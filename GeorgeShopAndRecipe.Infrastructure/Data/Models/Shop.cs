@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 using static GeorgeShopAndRecipe.Infrastructure.Data.Constants.DataConstants;
 namespace GeorgeShopAndRecipe.Infrastructure.Data.Models
 {
@@ -9,10 +10,12 @@ namespace GeorgeShopAndRecipe.Infrastructure.Data.Models
 
         [Required]
         [MaxLength(ShopNameMaxLength)]
+        [Comment("Shop name")]
         public string Name { get; set; } = string.Empty;
 
         [Required]
         [RegularExpression("^\\+359[7-9][0-9]{8}$")]
+        [Comment("Shop phone number")]
         public string PhoneNumber { get; set; } = string.Empty;
 
         [Required]

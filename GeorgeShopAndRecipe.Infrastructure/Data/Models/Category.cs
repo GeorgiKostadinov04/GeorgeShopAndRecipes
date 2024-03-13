@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 using static GeorgeShopAndRecipe.Infrastructure.Data.Constants.DataConstants;
 namespace GeorgeShopAndRecipe.Infrastructure.Data.Models
 {
@@ -9,6 +10,7 @@ namespace GeorgeShopAndRecipe.Infrastructure.Data.Models
 
         [Required]
         [MaxLength(CategoryNameMaxLength)]
+        [Comment("Category name")]
         public string Name { get; set; } = string.Empty;
 
         public ICollection<Recipe> Recipes { get; set; } = new List<Recipe>();

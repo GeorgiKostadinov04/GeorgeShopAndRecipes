@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 using static GeorgeShopAndRecipe.Infrastructure.Data.Constants.DataConstants;
 
 namespace GeorgeShopAndRecipe.Infrastructure.Data.Models
@@ -10,16 +11,20 @@ namespace GeorgeShopAndRecipe.Infrastructure.Data.Models
 
         [Required]
         [MaxLength(IngredientNameMaxLength)]
+        [Comment("Ingredient name")]
         public string Name { get; set; } = string.Empty;
 
         [Required]
+        [Comment("Ingredient calories")]
         public double Calories { get; set; }
 
         [Required]
+        [Comment("Ingredient price")]
         public decimal Price { get; set; }
 
         [Required]
         [MaxLength(IngredientCategoryMaxLength)]
+        [Comment("Ingredient category")]
         public string Category { get; set; } = string.Empty;
 
         [Required]
