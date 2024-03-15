@@ -21,40 +21,10 @@ namespace GeorgeShopAndRecipe.Infrastructure.Data
 
         public DbSet<Supplier> Suppliers { get; set; }
 
+        public DbSet<RecipeDeveloper> RecipeDevelopers { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.Entity<Category>()
-                .HasData(new Category()
-                {
-                    Id = 1,
-                    Name = "Gluten free"
-                },
-                new Category()
-                {
-                    Id = 2,
-                    Name = "Vegetarian"
-                },
-                new Category()
-                {
-                    Id = 3,
-                    Name = "Vegan"
-                },
-                new Category()
-                {
-                    Id = 4,
-                    Name = "Dairy free"
-                },
-                new Category()
-                {
-                    Id = 5,
-                    Name = "High protein"
-                },
-                new Category()
-                {
-                    Id = 6,
-                    Name = "None"
-                });
-
 
             base.OnModelCreating(builder);
         }

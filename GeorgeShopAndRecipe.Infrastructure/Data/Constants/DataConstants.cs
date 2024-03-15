@@ -37,5 +37,9 @@ namespace GeorgeShopAndRecipe.Infrastructure.Data.Constants
         public const int SupplierAgeMinValue = 18;
         public const double SupplierRatingMinValue = 0;
         public const double SupplierRatingMaxValue = 5;
+
+        //RecipeDeveloper
+        public const int RecipeDeveloperNameMaxLength = 50;
+        public const int RecipeDeveloperNameMixLength = 3;
     }
 }
