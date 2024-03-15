@@ -20,7 +20,7 @@ namespace GeorgeShopAndRecipe.Infrastructure.Data.Models
 
         [Required]
         [Comment("Ingredient price")]
-        public decimal Price { get; set; }
+        public decimal PricePerUnit { get; set; }
 
         [Required]
         [MaxLength(IngredientCategoryMaxLength)]
