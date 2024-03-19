@@ -1,11 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using static GeorgeShopAndRecipe.Infrastructure.Data.Constants.DataConstants;
 
 namespace GeorgeShopAndRecipe.Infrastructure.Data.Models
 {
     public class Ingredient
     {
+
         [Key]
         public int Id { get; set; }
 
@@ -33,5 +35,9 @@ namespace GeorgeShopAndRecipe.Infrastructure.Data.Models
         [Required]
         [Comment("Ingredient image url")]
         public string ImageUrl { get; set; } = string.Empty;
+
+        public ICollection<IngredientsShops> IngredientsShops { get; set; } 
+
+        public ICollection<IngredientsRecipes> IngredientsRecipes { get; set; } 
     }
 }

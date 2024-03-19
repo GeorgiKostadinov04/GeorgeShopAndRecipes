@@ -7,6 +7,7 @@ namespace GeorgeShopAndRecipe.Infrastructure.Data.Models
 {
     public class Recipe
     {
+
         [Key]
         public int Id { get; set; }
 
@@ -31,11 +32,13 @@ namespace GeorgeShopAndRecipe.Infrastructure.Data.Models
         public string ImageUrl {  get; set; } = string.Empty;
 
         [Required]
+        
         public int RecipeDeveloperId { get; set; }
 
+        [ForeignKey(nameof(RecipeDeveloperId))]
         public RecipeDeveloper RecipeDeveloper { get; set; } = null!;
 
-        [Required]
-        public ICollection<Ingredient> Ingredients { get; set; } = new List<Ingredient>();
+        
+        public ICollection<IngredientsRecipes> IngredientsRecipes { get; set; } 
     }
 }

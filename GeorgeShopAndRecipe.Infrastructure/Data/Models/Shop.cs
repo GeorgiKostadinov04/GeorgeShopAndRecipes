@@ -5,6 +5,7 @@ namespace GeorgeShopAndRecipe.Infrastructure.Data.Models
 {
     public class Shop
     {
+
         [Key]
         public int Id { get; set; }
 
@@ -22,10 +23,8 @@ namespace GeorgeShopAndRecipe.Infrastructure.Data.Models
         [Comment("Shop image url")]
         public string ImageUrl { get; set; } = string.Empty;
 
-        [Required]
-        public ICollection<Ingredient> Ingredients { get; set; } = new List<Ingredient>();
 
-        [Required]
-        public ICollection<Supplier> Suppliers { get; set; } = new List<Supplier>();
+        public ICollection<IngredientsShops> IngredientsShops { get; set; }
+
     }
 }
