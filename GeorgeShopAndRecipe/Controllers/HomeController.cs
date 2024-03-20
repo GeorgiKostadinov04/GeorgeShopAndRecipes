@@ -1,4 +1,5 @@
-﻿using GeorgeShopAndRecipe.Models;
+﻿using GeorgeShopAndRecipe.Core.Models.Home;
+using GeorgeShopAndRecipe.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -15,7 +16,8 @@ namespace GeorgeShopAndRecipe.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var model = new IndexViewModel();
+            return View(model);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
