@@ -14,9 +14,11 @@ namespace GeorgeShopAndRecipe.Core.Services
             repository = _repository;
         }
 
-        public Task CreateAsync(string userId, string name)
+        public async Task CreateAsync(string userId, string name)
         {
-            throw new NotImplementedException();
+            await repository.AddAsync(new RecipeDeveloper { UserId = userId, Name = name });
+
+            await repository.SaveChangesAsync();
         }
 
         public async Task<bool> ExistByIdAsync(string userId)
@@ -25,9 +27,10 @@ namespace GeorgeShopAndRecipe.Core.Services
                 .AnyAsync(rd=>rd.UserId == userId);
         }
 
-        public Task<bool> UserWithNameExistsAsync(string name)
+        public async Task<bool> UserWithNameExistsAsync(string name)
         {
-            throw new NotImplementedException();
+            return await repository.AllReadOnly<RecipeDeveloper>()
+                .AnyAsync(rd => rd.Name == name);
         }
     }
 }
