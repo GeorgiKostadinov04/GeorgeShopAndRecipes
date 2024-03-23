@@ -40,6 +40,6 @@ namespace GeorgeShopAndRecipe.Infrastructure.Data.Constants
 
         //RecipeDeveloper
         public const int RecipeDeveloperNameMaxLength = 50;
-        public const int RecipeDeveloperNameMixLength = 3;
+        public const int RecipeDeveloperNameMinLength = 3;
     }
 }
