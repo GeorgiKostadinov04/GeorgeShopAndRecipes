@@ -7,7 +7,7 @@ namespace GeorgeShopAndRecipe.Controllers
     public class RecipeController : BaseController
     {
         [AllowAnonymous]
-        public async  Task<IActionResult> All()
+        public async Task<IActionResult> All()
         {
             var model = new AllRecipesQueryModel();
             return View(model);
@@ -63,7 +63,7 @@ namespace GeorgeShopAndRecipe.Controllers
 
         [HttpPost]
 
-        public async Task<IActionResult> Edit(RecipeDetailsViewModel model)
+        public async Task<IActionResult> Delete(RecipeDetailsViewModel model)
         {
             return RedirectToAction(nameof(All));
         }

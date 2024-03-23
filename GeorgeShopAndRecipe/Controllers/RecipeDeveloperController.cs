@@ -1,4 +1,5 @@
-﻿using GeorgeShopAndRecipe.Core.Contracts;
+﻿using GeorgeShopAndRecipe.Attributes;
+using GeorgeShopAndRecipe.Core.Contracts;
 using GeorgeShopAndRecipe.Core.Models.RecipeDeveloper;
 using GeorgeShopAndRecipe.Extensions;
 using Microsoft.AspNetCore.Authorization;
@@ -17,21 +18,25 @@ namespace GeorgeShopAndRecipe.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Become()
+        [NotARecipeDeveloper]
+        public IActionResult Become()
         {
             var model = new BecomeRecipeDeveloperFormModel();
 
-            if(await recipeDeveloperService.ExistByIdAsync(User.Id()))
-            {
-                return BadRequest();
-            }
             return View(model);
         }
 
         [HttpPost]
-
+        [NotARecipeDeveloper]
         public async Task<IActionResult> Become(BecomeRecipeDeveloperFormModel model)
         {
+            if(ModelState.IsValid == false)
+            {
+                return View(model); 
+            }
+
+            await recipeDeveloperService.CreateAsync(User.Id(), model.Name);
+
             return RedirectToAction(nameof(RecipeController.All), "Recipe");
         }
     }
