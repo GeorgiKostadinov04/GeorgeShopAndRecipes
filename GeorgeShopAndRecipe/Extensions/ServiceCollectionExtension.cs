@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using GeorgeShopAndRecipe.Infrastructure.Data;
 using GeorgeShopAndRecipe.Infrastructure.Common;
 using GeorgeShopAndRecipe.Core.Contracts.Recipe;
-using GeorgeShopAndRecipe.Core.Services.Recipe;
+using GeorgeShopAndRecipe.Core.Services;
 
 namespace Microsoft.Extensions.DependencyInjection
 {

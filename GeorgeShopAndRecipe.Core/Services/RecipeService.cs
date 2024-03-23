@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GeorgeShopAndRecipe.Core.Services.Recipe
+namespace GeorgeShopAndRecipe.Core.Services
 {
     public class RecipeService : IRecipeService
     {
