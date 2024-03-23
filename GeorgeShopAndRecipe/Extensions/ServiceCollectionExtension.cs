@@ -4,6 +4,7 @@ using GeorgeShopAndRecipe.Infrastructure.Data;
 using GeorgeShopAndRecipe.Infrastructure.Common;
 using GeorgeShopAndRecipe.Core.Contracts.Recipe;
 using GeorgeShopAndRecipe.Core.Services;
+using GeorgeShopAndRecipe.Core.Contracts;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -12,6 +13,7 @@ namespace Microsoft.Extensions.DependencyInjection
         public static IServiceCollection AppApplicationServices(this IServiceCollection services)
         {
             services.AddScoped<IRecipeService, RecipeService>();
+            services.AddScoped<IRecipeDeveloperService, RecipeDeveloperService>();
             return services;
         }
 

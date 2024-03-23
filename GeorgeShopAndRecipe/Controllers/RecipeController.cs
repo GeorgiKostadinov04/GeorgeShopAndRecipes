@@ -4,8 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GeorgeShopAndRecipe.Controllers
 {
-    [Authorize]
-    public class RecipeController : Controller
+    public class RecipeController : BaseController
     {
         [AllowAnonymous]
         public async  Task<IActionResult> All()
