@@ -18,7 +18,7 @@ namespace GeorgeShopAndRecipe.Core.Services
         {
             repository = _repository;
         }
-        public async Task<IEnumerable<RecipeIndexServiceModel>> LastThreeRecipes()
+        public async Task<IEnumerable<RecipeIndexServiceModel>> LastThreeRecipesAsync()
         {
             return await repository
                 .AllReadOnly<Infrastructure.Data.Models.Recipe>()
