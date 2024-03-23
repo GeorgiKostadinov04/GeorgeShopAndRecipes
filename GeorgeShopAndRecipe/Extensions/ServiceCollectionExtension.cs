@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using GeorgeShopAndRecipe.Infrastructure.Data;
+using GeorgeShopAndRecipe.Infrastructure.Common;
+using GeorgeShopAndRecipe.Core.Contracts.Recipe;
+using GeorgeShopAndRecipe.Core.Services.Recipe;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -8,6 +11,7 @@ namespace Microsoft.Extensions.DependencyInjection
     {
         public static IServiceCollection AppApplicationServices(this IServiceCollection services)
         {
+            services.AddScoped<IRecipeService, RecipeService>();
             return services;
         }
 
@@ -18,6 +22,8 @@ namespace Microsoft.Extensions.DependencyInjection
                 options.UseSqlServer(connectionString));
 
             services.AddDatabaseDeveloperPageExceptionFilter();
+
+            services.AddScoped<IRepository, Repository>();
 
             return services;
         }

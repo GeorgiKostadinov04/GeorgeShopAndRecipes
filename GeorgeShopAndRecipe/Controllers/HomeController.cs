@@ -1,4 +1,5 @@
-﻿using GeorgeShopAndRecipe.Core.Models.Home;
+﻿using GeorgeShopAndRecipe.Core.Contracts.Recipe;
+using GeorgeShopAndRecipe.Core.Models.Home;
 using GeorgeShopAndRecipe.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -8,15 +9,17 @@ namespace GeorgeShopAndRecipe.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IRecipeService recipeService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IRecipeService _recipeService)
         {
             _logger = logger;
+            recipeService = _recipeService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var model = new IndexViewModel();
+            var model = await recipeService.LastThreeRecipes();
             return View(model);
         }
 
