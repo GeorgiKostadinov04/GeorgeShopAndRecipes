@@ -1,5 +1,6 @@
 ﻿using GeorgeShopAndRecipe.Core.Contracts;
 using GeorgeShopAndRecipe.Core.Models.RecipeDeveloper;
+using GeorgeShopAndRecipe.Extensions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,6 +20,11 @@ namespace GeorgeShopAndRecipe.Controllers
         public async Task<IActionResult> Become()
         {
             var model = new BecomeRecipeDeveloperFormModel();
+
+            if(await recipeDeveloperService.ExistByIdAsync(User.Id()))
+            {
+                return BadRequest();
+            }
             return View(model);
         }
 

@@ -21,7 +21,7 @@ namespace GeorgeShopAndRecipe.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
-            var model = await recipeService.LastThreeRecipes();
+            var model = await recipeService.LastThreeRecipesAsync();
             return View(model);
         }
         [AllowAnonymous]

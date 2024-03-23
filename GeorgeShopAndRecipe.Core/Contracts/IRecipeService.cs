@@ -4,6 +4,6 @@ namespace GeorgeShopAndRecipe.Core.Contracts.Recipe
 {
     public interface IRecipeService
     {
-        Task<IEnumerable<RecipeIndexServiceModel>> LastThreeRecipes();
+        Task<IEnumerable<RecipeIndexServiceModel>> LastThreeRecipesAsync();
     }
 }

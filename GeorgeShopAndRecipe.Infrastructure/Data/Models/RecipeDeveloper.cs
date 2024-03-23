@@ -6,6 +6,7 @@ using static GeorgeShopAndRecipe.Infrastructure.Data.Constants.DataConstants;
 
 namespace GeorgeShopAndRecipe.Infrastructure.Data.Models
 {
+    
     public class RecipeDeveloper
     {
         [Key]
