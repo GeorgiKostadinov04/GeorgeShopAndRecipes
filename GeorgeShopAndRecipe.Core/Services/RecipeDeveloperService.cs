@@ -26,5 +26,11 @@ namespace GeorgeShopAndRecipe.Core.Services
             return await repository.AllReadOnly<RecipeDeveloper>()
                 .AnyAsync(rd=>rd.UserId == userId);
         }
+
+        public async Task<int?> GetRecipeDeveloperId(string userId)
+        {
+            return (await repository.AllReadOnly<RecipeDeveloper>()
+                .FirstOrDefaultAsync(rd =>rd.UserId == userId))?.Id;
+        }
     }
 }
