@@ -21,6 +21,43 @@ namespace GeorgeShopAndRecipe.Core.Services
             repository = _repository;
         }
 
+        public async Task<RecipeQueryServiceModel> AllAsync(string? category = null, string? searchTerm = null, int currentPage = 1, int recipesPerPage = 1)
+        {
+            var recipesToShow = repository.AllReadOnly<Recipe>();
+
+            if(category != null)
+            {
+                recipesToShow = recipesToShow.Where(r =>r.Category.Name == category);
+            }
+
+            if(searchTerm != null)
+            {
+                string normalizedSearchTerm = searchTerm.ToLower();
+                recipesToShow = recipesToShow.Where(r => (r.Name.ToLower().Contains(normalizedSearchTerm)
+                || r.WayOfMaking.ToLower().Contains(normalizedSearchTerm)));
+            }
+
+            var recipes = await recipesToShow
+                .Skip((currentPage - 1) * recipesPerPage)
+                .Take(recipesPerPage)
+                .Select(r => new RecipeServiceModel()
+                {
+                    Id = r.Id,
+                    Name = r.Name,
+                    WayOfMaking = r.WayOfMaking,
+                    ImageUrl = r.ImageUrl,
+                })
+                .ToListAsync();
+
+            int totalRecipes = await recipesToShow.CountAsync();
+
+            return new RecipeQueryServiceModel()
+            {
+                Recipes = recipes,
+                TotalRecipesCount = totalRecipes
+            };
+        }
+
         public async Task<IEnumerable<RecipeCategoryServiceModel>> AllCategoriesAsync()
         {
             return await repository.AllReadOnly<Category>()
@@ -29,6 +66,14 @@ namespace GeorgeShopAndRecipe.Core.Services
                     Id = c.Id,
                     Name = c.Name,
                 })
+                .ToListAsync();
+        }
+
+        public async Task<IEnumerable<string>> AllCategoriesNamesAsync()
+        {
+            return await repository.AllReadOnly<Category>()
+                .Select(c => c.Name)
+                .Distinct()
                 .ToListAsync();
         }
 

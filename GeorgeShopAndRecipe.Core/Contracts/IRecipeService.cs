@@ -16,5 +16,12 @@ namespace GeorgeShopAndRecipe.Core.Contracts.Recipe
         Task<bool> IngredientExistsAsync(string ingredientName);
 
         Task<int> CreateAsync(RecipeFormModel model, int recipeDeveloperID);   
+
+        Task<RecipeQueryServiceModel> AllAsync(string? category = null, 
+            string? searchTerm = null, 
+            int currentPage = 1,
+            int recipesPerPage =1);
+
+        Task<IEnumerable<string>> AllCategoriesNamesAsync();
     }
 }
