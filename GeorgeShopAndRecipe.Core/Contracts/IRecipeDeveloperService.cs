@@ -6,6 +6,6 @@
 
         Task CreateAsync(string userId, string name);
 
-        Task<int?> GetRecipeDeveloperId(string userId);
+        Task<int?> GetRecipeDeveloperIdAsync(string userId);
     }
 }
