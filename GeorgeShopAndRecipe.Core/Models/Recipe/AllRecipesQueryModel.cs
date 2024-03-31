@@ -6,7 +6,7 @@ namespace GeorgeShopAndRecipe.Core.Models.Recipe
 {
     public class AllRecipesQueryModel
     {
-        public const int RecipePerPage = 3;
+        public int RecipePerPage { get; } = 3;
 
         public string Category { get; set; } = null!;
 
