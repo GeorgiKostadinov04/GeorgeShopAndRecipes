@@ -23,5 +23,11 @@ namespace GeorgeShopAndRecipe.Core.Contracts.Recipe
             int recipesPerPage =1);
 
         Task<IEnumerable<string>> AllCategoriesNamesAsync();
+
+        Task<IEnumerable<RecipeServiceModel>> AllRecipesByRecipeDeveloperIdAsync(int recipeDeveloperId);
+
+        Task<bool> ExistsAsync(int id);
+
+        Task<RecipeDetailsServiceModel> RecipeDetailsByIdAsync(int id);
     }
 }

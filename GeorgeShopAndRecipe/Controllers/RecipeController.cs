@@ -21,21 +21,42 @@ namespace GeorgeShopAndRecipe.Controllers
         }
 
         [AllowAnonymous]
-        public async Task<IActionResult> All([FromQuery]AllRecipesQueryModel model)
+        public async Task<IActionResult> All([FromQuery]AllRecipesQueryModel query)
         {
-            
-            return View(model);
+            var model = await recipeService.AllAsync(
+                query.Category,
+                query.SearchTerm,
+                query.CurrentPage,
+                query.RecipePerPage);
+
+            query.TotalRecipesCount = model.TotalRecipesCount;
+            query.Recipes = model.Recipes;
+            query.Categories = await recipeService.AllCategoriesNamesAsync();
+
+            return View(query);
         }
 
+        [HttpGet]
         public async Task<IActionResult> Mine()
         {
-            var model = new AllRecipesQueryModel();
+            var userId = User.Id();
+            IEnumerable<RecipeServiceModel> model;
+
+            int recipeDeveloperId = await recipeDeveloperService.GetRecipeDeveloperIdAsync(userId) ?? 0;
+            model = await recipeService.AllRecipesByRecipeDeveloperIdAsync(recipeDeveloperId);
+            
+
             return View(model);
         }
 
         public async Task<IActionResult> Details(int id)
         {
-            var model = new RecipeDetailsViewModel();
+            if(await recipeService.ExistsAsync(id) == false)
+            {
+                return BadRequest();
+            }
+
+            var model = await recipeService.RecipeDetailsByIdAsync(id);
 
             return View(model);
         }
@@ -81,7 +102,7 @@ namespace GeorgeShopAndRecipe.Controllers
                 return View(model);
             }
 
-            int? recipeDeveloperId = await recipeDeveloperService.GetRecipeDeveloperId(User.Id());
+            int? recipeDeveloperId = await recipeDeveloperService.GetRecipeDeveloperIdAsync(User.Id());
 
             int newRecipeId = await recipeService.CreateAsync(model, recipeDeveloperId ?? 0);
 

@@ -6,12 +6,12 @@ namespace GeorgeShopAndRecipe.Core.Models.Recipe
 {
     public class AllRecipesQueryModel
     {
-        public int RecipePerPage { get; } = 3;
+        public int RecipePerPage { get;} = 3;
 
         public string Category { get; set; } = null!;
 
         [Display(Name = "Search by text")]
-        public string SearchItem { get; set; } = null!;
+        public string SearchTerm { get; set; } = null!;
 
         public int CurrentPage { get; set; } = 1;
 

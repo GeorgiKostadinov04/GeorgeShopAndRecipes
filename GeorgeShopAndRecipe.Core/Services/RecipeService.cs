@@ -40,13 +40,7 @@ namespace GeorgeShopAndRecipe.Core.Services
             var recipes = await recipesToShow
                 .Skip((currentPage - 1) * recipesPerPage)
                 .Take(recipesPerPage)
-                .Select(r => new RecipeServiceModel()
-                {
-                    Id = r.Id,
-                    Name = r.Name,
-                    WayOfMaking = r.WayOfMaking,
-                    ImageUrl = r.ImageUrl,
-                })
+                .ProjectToRecipeServiceModel()
                 .ToListAsync();
 
             int totalRecipes = await recipesToShow.CountAsync();
@@ -88,6 +82,14 @@ namespace GeorgeShopAndRecipe.Core.Services
                 .ToListAsync();
         }
 
+        public async Task<IEnumerable<RecipeServiceModel>> AllRecipesByRecipeDeveloperIdAsync(int recipeDeveloperId)
+        {
+            return await repository.AllReadOnly<Recipe>()
+                .Where(r => r.RecipeDeveloperId == recipeDeveloperId)
+                .ProjectToRecipeServiceModel() 
+                .ToListAsync();
+        }
+
         public Task<bool> CategoryExistsAsync(int categoryId)
         {
             return repository.AllReadOnly<Category>()
@@ -112,6 +114,12 @@ namespace GeorgeShopAndRecipe.Core.Services
             return recipe.Id;
         }
 
+        public async Task<bool> ExistsAsync(int id)
+        {
+            return await repository.AllReadOnly<Recipe>()
+                .AnyAsync(r => r.Id == id);
+        }
+
         public Task<bool> IngredientExistsAsync(string ingredientName)
         {
             return repository.AllReadOnly<Ingredient>()
@@ -131,6 +139,26 @@ namespace GeorgeShopAndRecipe.Core.Services
                     ImageUrl = x.ImageUrl
                 })
                 .ToListAsync();
+        }
+
+        public async Task<RecipeDetailsServiceModel> RecipeDetailsByIdAsync(int id)
+        {
+            return await repository.AllReadOnly<Recipe>()
+                .Where(r => r.Id == id)
+                .Select(r => new RecipeDetailsServiceModel()
+                {
+                    Id = r.Id,
+                    Name = r.Name,
+                    RecipeDeveloper = new Models.RecipeDeveloper.RecipeDeveloperServiceModel()
+                    {
+                        Name = r.RecipeDeveloper.Name,
+                    },
+                    Category = r.Category.Name,
+                    ImageUrl = r.ImageUrl,
+                    WayOfMaking = r.WayOfMaking,
+
+                })
+                .FirstAsync();
         }
     }
 }

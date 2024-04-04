@@ -1,7 +1,20 @@
-﻿@model AllRecipesQueryModel
+﻿@model IEnumerable<RecipeServiceModel>
+
 @{
-    ViewData["Title"] = "All Recipes";
+    ViewData["Title"] = "My Recipes";
 }
 
-<h2 class="text-center">@ViewData["Title"]</h2>
+<h2 class="text-center">@ViewBag.Title</h2>
 <hr />
+
+@if(Model.Any() == false)
+{
+    <h3 class="text-center">You have no recipes yet!</h3>
+}
+
+<div class="row">
+    @foreach(var item in Model)
+    {
+        <partial name="_RecipePartial" model="@item" />
+    }
+</div>
