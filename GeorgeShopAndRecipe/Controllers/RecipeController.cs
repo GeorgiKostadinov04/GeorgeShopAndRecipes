@@ -2,9 +2,11 @@
 using GeorgeShopAndRecipe.Core.Contracts;
 using GeorgeShopAndRecipe.Core.Contracts.Recipe;
 using GeorgeShopAndRecipe.Core.Models.Recipe;
+using GeorgeShopAndRecipe.Core.Services;
 using GeorgeShopAndRecipe.Extensions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace GeorgeShopAndRecipe.Controllers
 {
@@ -82,14 +84,14 @@ namespace GeorgeShopAndRecipe.Controllers
         {
             if(await recipeService.CategoryExistsAsync(model.CategoryId) == false)
             {
-                ModelState.AddModelError(nameof(model.CategoryId), "");
+                ModelState.AddModelError(nameof(model.CategoryId), "Category does not exist");
             }
 
             foreach(var i in model.Ingredients)
             {
                 if(await recipeService.IngredientExistsAsync(i.Name) == false)
                 {
-                    ModelState.AddModelError(nameof(model.Ingredients), "");
+                    ModelState.AddModelError(nameof(model.Ingredients), "Ingredient does not exist");
                 };
             }
 
@@ -112,8 +114,18 @@ namespace GeorgeShopAndRecipe.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
-            var model = new RecipeFormModel();
+            if(await recipeService.ExistsAsync(id) == false)
+            {
+                return BadRequest();
+            }
 
+            if(await recipeService.HasRecipeDeveloperWithIdAsync(id, User.Id()) == false)
+            {
+                return Unauthorized();
+            }
+
+
+            var model = await recipeService.GetRecipeFormModelByIdAsync(id);
             return View(model);
         }
 
@@ -121,13 +133,56 @@ namespace GeorgeShopAndRecipe.Controllers
 
         public async Task<IActionResult> Edit(int id, RecipeFormModel model)
         {
+            if (await recipeService.ExistsAsync(id) == false)
+            {
+                return BadRequest();
+            }
+
+            if (await recipeService.HasRecipeDeveloperWithIdAsync(id, User.Id()) == false)
+            {
+                return Unauthorized();
+            }
+
+            if(await recipeService.CategoryExistsAsync(model.CategoryId) == false)
+            {
+                ModelState.AddModelError(nameof(model.CategoryId), "Category does not exist");
+            }
+
+            if(ModelState.IsValid == false)
+            {
+                model.Categories = await recipeService.AllCategoriesAsync();
+
+                return View(model);
+            }
+
+            await recipeService.EditAsync(id, model);
+
             return RedirectToAction(nameof(Details), new { id = 1 });
         }
 
         [HttpGet]
         public async Task<IActionResult> Delete(int id)
         {
-            var model = new RecipeDetailsViewModel();
+            
+
+            if(await recipeService.ExistsAsync(id) == false)
+            {
+                return BadRequest();
+            }
+
+            if(await recipeService.HasRecipeDeveloperWithIdAsync(id, User.Id()) == false)
+            {
+                return Unauthorized();
+            }
+
+            var recipe = await recipeService.RecipeDetailsByIdAsync(id);
+
+            var model = new RecipeDetailsViewModel()
+            {
+                Id = id,
+                Name = recipe.Name,
+                ImageUrl = recipe.ImageUrl,
+            };
 
             return View(model);
         }
@@ -136,6 +191,18 @@ namespace GeorgeShopAndRecipe.Controllers
 
         public async Task<IActionResult> Delete(RecipeDetailsViewModel model)
         {
+            if (await recipeService.ExistsAsync(model.Id) == false)
+            {
+                return BadRequest();
+            }
+
+            if (await recipeService.HasRecipeDeveloperWithIdAsync(model.Id, User.Id()) == false)
+            {
+                return Unauthorized();
+            }
+
+            await recipeService.DeleteAsync(model.Id);
+
             return RedirectToAction(nameof(All));
         }
     }

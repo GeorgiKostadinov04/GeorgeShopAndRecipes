@@ -29,5 +29,13 @@ namespace GeorgeShopAndRecipe.Core.Contracts.Recipe
         Task<bool> ExistsAsync(int id);
 
         Task<RecipeDetailsServiceModel> RecipeDetailsByIdAsync(int id);
+
+        Task EditAsync(int recipeId, RecipeFormModel model);
+
+        Task<bool> HasRecipeDeveloperWithIdAsync(int recipeId, string userId);
+
+        Task<RecipeFormModel?> GetRecipeFormModelByIdAsync(int id);
+
+        Task DeleteAsync(int recipeId);
     }
 }

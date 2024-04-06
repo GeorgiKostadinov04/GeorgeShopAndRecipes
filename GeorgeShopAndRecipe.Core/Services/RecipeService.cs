@@ -114,10 +114,59 @@ namespace GeorgeShopAndRecipe.Core.Services
             return recipe.Id;
         }
 
+        public async Task DeleteAsync(int recipeId)
+        {
+            repository.DeleteAsync<Recipe>(recipeId);
+            await repository.SaveChangesAsync();
+        }
+
+        public async Task EditAsync(int recipeId, RecipeFormModel model)
+        {
+            var recipe = await repository.GetByIdAsync<Recipe>(recipeId);
+
+            if(recipe != null)
+            {
+                recipe.WayOfMaking = model.WayOfMaking;
+                recipe.ImageUrl = model.ImageUrl;
+                recipe.Name = model.Name;
+                recipe.CategoryId = model.CategoryId;
+
+                await repository.SaveChangesAsync();
+            }
+        }
+
         public async Task<bool> ExistsAsync(int id)
         {
             return await repository.AllReadOnly<Recipe>()
                 .AnyAsync(r => r.Id == id);
+        }
+
+        public async Task<RecipeFormModel?> GetRecipeFormModelByIdAsync(int id)
+        {
+            var recipe =  await repository.AllReadOnly<Recipe>()
+                .Where(r => r.Id == id)
+                .Select(r => new RecipeFormModel()
+                {
+                    Name = r.Name,
+                    WayOfMaking = r.WayOfMaking,
+                    CategoryId = r.CategoryId,
+                    ImageUrl = r.ImageUrl,
+
+                })
+                .FirstOrDefaultAsync();
+
+            if(recipe != null)
+            {
+                recipe.Categories = await AllCategoriesAsync();
+
+            }
+            return recipe;
+        }
+
+        public async Task<bool> HasRecipeDeveloperWithIdAsync(int recipeId, string userId)
+        {
+            return await repository.AllReadOnly<Recipe>()
+                .AnyAsync(r => r.Id == recipeId && r.RecipeDeveloper.UserId == userId);
         }
 
         public Task<bool> IngredientExistsAsync(string ingredientName)
