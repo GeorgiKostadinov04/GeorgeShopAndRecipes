@@ -6,7 +6,7 @@
 <ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))
 {
-        if(await recipeDeveloperService.ExistByIdAsync(User.Id()))
+        if(await recipeDeveloperService.ExistByIdAsync(User.Id()) == false)
         {
             <li class="nav-item">
                 <a class="nav-link text-dark" asp-area="" asp-controller="RecipeDeveloper" asp-action="Become">Become Recipe Developer</a>
