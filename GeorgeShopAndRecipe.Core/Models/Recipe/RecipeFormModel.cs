@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using GeorgeShopAndRecipe.Core.Contracts;
+using System.ComponentModel.DataAnnotations;
 using static GeorgeShopAndRecipe.Core.Constants.MessageConstants;
 using static GeorgeShopAndRecipe.Infrastructure.Data.Constants.DataConstants;
 
@@ -6,7 +7,7 @@ using static GeorgeShopAndRecipe.Infrastructure.Data.Constants.DataConstants;
 namespace GeorgeShopAndRecipe.Core.Models.Recipe
 
 {
-    public class RecipeFormModel
+    public class RecipeFormModel : IRecipeModel
     {
         [Required(ErrorMessage =RequiredMessage)]
         [StringLength(RecipeNameMaxLength, MinimumLength = RecipeNameMinLength,

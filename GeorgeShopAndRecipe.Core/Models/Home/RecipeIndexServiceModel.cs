@@ -1,6 +1,8 @@
-﻿namespace GeorgeShopAndRecipe.Core.Models.Home
+﻿using GeorgeShopAndRecipe.Core.Contracts;
+
+namespace GeorgeShopAndRecipe.Core.Models.Home
 {
-    public class RecipeIndexServiceModel
+    public class RecipeIndexServiceModel : IRecipeModel
     {
         public int Id { get; set; }
 

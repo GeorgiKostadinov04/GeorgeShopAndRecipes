@@ -1,6 +1,7 @@
 ﻿using GeorgeShopAndRecipe.Attributes;
 using GeorgeShopAndRecipe.Core.Contracts;
 using GeorgeShopAndRecipe.Core.Contracts.Recipe;
+using GeorgeShopAndRecipe.Core.Extensions;
 using GeorgeShopAndRecipe.Core.Models.Recipe;
 using GeorgeShopAndRecipe.Core.Services;
 using GeorgeShopAndRecipe.Extensions;
@@ -51,7 +52,8 @@ namespace GeorgeShopAndRecipe.Controllers
             return View(model);
         }
 
-        public async Task<IActionResult> Details(int id)
+        [HttpGet]
+        public async Task<IActionResult> Details(int id, string information)
         {
             if(await recipeService.ExistsAsync(id) == false)
             {
@@ -59,6 +61,11 @@ namespace GeorgeShopAndRecipe.Controllers
             }
 
             var model = await recipeService.RecipeDetailsByIdAsync(id);
+
+            if(information != model.GetInformation())
+            {
+                return BadRequest();
+            }
 
             return View(model);
         }
@@ -108,7 +115,7 @@ namespace GeorgeShopAndRecipe.Controllers
 
             int newRecipeId = await recipeService.CreateAsync(model, recipeDeveloperId ?? 0);
 
-            return RedirectToAction(nameof(Details), new {id = newRecipeId});
+            return RedirectToAction(nameof(Details), new {id = newRecipeId, information = model.GetInformation()});
         }
 
         [HttpGet]
@@ -157,7 +164,7 @@ namespace GeorgeShopAndRecipe.Controllers
 
             await recipeService.EditAsync(id, model);
 
-            return RedirectToAction(nameof(Details), new { id = 1 });
+            return RedirectToAction(nameof(Details), new { id = 1, information = model.GetInformation() });
         }
 
         [HttpGet]

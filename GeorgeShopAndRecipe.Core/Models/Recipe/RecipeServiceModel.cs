@@ -1,11 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using static GeorgeShopAndRecipe.Infrastructure.Data.Constants.DataConstants;
 using static GeorgeShopAndRecipe.Core.Constants.MessageConstants;
+using GeorgeShopAndRecipe.Core.Contracts;
 
 
 namespace GeorgeShopAndRecipe.Core.Models.Recipe
 {
-    public class RecipeServiceModel
+    public class RecipeServiceModel : IRecipeModel
     {
         public int Id { get; set; }
 
