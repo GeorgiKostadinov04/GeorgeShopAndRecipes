@@ -1,4 +1,5 @@
-﻿@model RecipeDetailsServiceModel
+﻿@inject IRecipeService recipeService
+@model RecipeDetailsServiceModel
 
 @{
     ViewBag.Title = "Recipe Details";
@@ -20,10 +21,13 @@
             <div class="form-inline">
                 @if (this.User.Identity.IsAuthenticated)
                 {
-                    <a class="btn btn-warning" asp-controller="Recipe" asp-action="Edit"
-                       asp-route-id="@Model.Id">Edit</a>
-                    <a class="ml-2 btn btn-danger" asp-controller="Recipe" asp-action="Delete"
-                       asp-route-id="@Model.Id">Delete</a>
+                    if(await recipeService.HasRecipeDeveloperWithIdAsync(Model.Id, User.Id()))
+                    {
+                        <a class="btn btn-warning" asp-controller="Recipe" asp-action="Edit"
+                           asp-route-id="@Model.Id">Edit</a>
+                        <a class="ml-2 btn btn-danger" asp-controller="Recipe" asp-action="Delete"
+                           asp-route-id="@Model.Id">Delete</a>
+                    }
                 }
             </div>
             <p></p>

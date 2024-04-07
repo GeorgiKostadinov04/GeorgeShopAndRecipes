@@ -1,13 +1,18 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
+@inject IRecipeDeveloperService recipeDeveloperService
 
 <ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))
 {
-    <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="" asp-controller="RecipeDeveloper" asp-action="Become">Become Recipe Developer</a>
-    </li>
+        if(await recipeDeveloperService.ExistByIdAsync(User.Id()))
+        {
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="RecipeDeveloper" asp-action="Become">Become Recipe Developer</a>
+            </li>
+        }
+        
     <li class="nav-item">
         <a  class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity?.Name!</a>
     </li>

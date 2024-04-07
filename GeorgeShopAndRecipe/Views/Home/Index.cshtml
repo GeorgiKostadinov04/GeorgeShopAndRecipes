@@ -1,5 +1,6 @@
 ﻿@model IEnumerable<RecipeIndexServiceModel>
-
+@inject IRecipeService recipeService
+@inject IRecipeDeveloperService recipeDeveloperService
 @{
     ViewData["Title"] = "Home Page";
     var recipes = Model.ToList();
@@ -15,7 +16,7 @@
         </p>
         <hr class="my-4">
         <p class="lead">
-            @if (User?.Identity?.IsAuthenticated ?? false)
+            @if (User?.Identity?.IsAuthenticated ?? false && await recipeDeveloperService.ExistByIdAsync(User.Id()))
             {
                 <a asp-controller="Recipe" asp-action="Add" class="btn btn-primary btn-lg"
                    role="button">Add Recipe</a>

@@ -1,4 +1,6 @@
-﻿@model RecipeServiceModel
+﻿@using GeorgeShopAndRecipe.Core.Contracts.Recipe
+@model RecipeServiceModel
+@inject IRecipeService recipeService
 
 <div class="col-md-4">
     <div class="card mb-3">
@@ -11,11 +13,14 @@
                
             @if (this.User.Identity.IsAuthenticated)
             {
-                <a asp-controller="Recipe" asp-action="Edit" asp-route-id="@Model.Id"
-                   class="btn btn-warning">Edit</a>
-                <a asp-controller="Recipe" asp-action="Delete" asp-route-id="@Model.Id"
-                   class="btn btn-danger">Delete</a>
-                <p></p>
+                if (await recipeService.HasRecipeDeveloperWithIdAsync(Model.Id, User.Id()))
+                {
+                    <a asp-controller="Recipe" asp-action="Edit" asp-route-id="@Model.Id"
+                       class="btn btn-warning">Edit</a>
+                    <a asp-controller="Recipe" asp-action="Delete" asp-route-id="@Model.Id"
+                       class="btn btn-danger">Delete</a>
+                    <p></p>
+                }
             }
         </div>
     </div>
