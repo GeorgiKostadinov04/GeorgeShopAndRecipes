@@ -5,6 +5,7 @@ using GeorgeShopAndRecipe.Infrastructure.Common;
 using GeorgeShopAndRecipe.Core.Contracts.Recipe;
 using GeorgeShopAndRecipe.Core.Services;
 using GeorgeShopAndRecipe.Core.Contracts;
+using GeorgeShopAndRecipe.Infrastructure.Data.Models;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -35,7 +36,7 @@ namespace Microsoft.Extensions.DependencyInjection
         {
 
             services
-                .AddDefaultIdentity<IdentityUser>(options =>
+                .AddDefaultIdentity<ApplicationUser>(options =>
                 {
                     options.SignIn.RequireConfirmedAccount = false;
                     options.Password.RequireNonAlphanumeric = false;

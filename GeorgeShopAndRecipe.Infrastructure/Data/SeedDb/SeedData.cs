@@ -38,9 +38,9 @@ namespace GeorgeShopAndRecipe.Infrastructure.Data.SeedDb
 
         public Supplier FirstSupplier { get; set; }
 
-        public IdentityUser RecipeDeveloperUser { get; set; }
+        public ApplicationUser RecipeDeveloperUser { get; set; }
 
-        public IdentityUser GuestUser { get; set; }
+        public ApplicationUser GuestUser { get; set; }
 
         public RecipeDeveloper RecipeDeveloper { get; set; }
 
@@ -59,7 +59,7 @@ namespace GeorgeShopAndRecipe.Infrastructure.Data.SeedDb
         {
             var hasher = new PasswordHasher<IdentityUser>();
 
-            RecipeDeveloperUser = new IdentityUser()
+            RecipeDeveloperUser = new ApplicationUser()
             {
                 Id = "dea12856-c198-4129-b3f3-b893d8395082",
                 UserName = "recipeDeveloper@mail.com",
@@ -70,7 +70,7 @@ namespace GeorgeShopAndRecipe.Infrastructure.Data.SeedDb
 
             RecipeDeveloperUser.PasswordHash = hasher.HashPassword(RecipeDeveloperUser, "recipeDeveloper123");
 
-            GuestUser = new IdentityUser()
+            GuestUser = new ApplicationUser()
             {
                 Id = "6d5800ce-d726-4fc8-83d9-d6b3ac1f591e",
                 UserName = "guest@mail.com",
