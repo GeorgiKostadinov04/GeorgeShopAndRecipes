@@ -15,7 +15,7 @@ namespace GeorgeShopAndRecipe.Infrastructure.Data.SeedDb
         {
             var data = new SeedData();
 
-            builder.HasData(new RecipeDeveloper[] {data.RecipeDeveloper});
+            builder.HasData(new RecipeDeveloper[] {data.RecipeDeveloper, data.AdminRecipeDeveloper});
         }
     }
 }

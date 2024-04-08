@@ -42,7 +42,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     options.Password.RequireNonAlphanumeric = false;
                     options.Password.RequireDigit = false;
                 })
-
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             return services;
         }

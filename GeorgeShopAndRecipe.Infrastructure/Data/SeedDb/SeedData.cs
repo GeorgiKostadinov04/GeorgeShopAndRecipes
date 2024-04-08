@@ -42,6 +42,10 @@ namespace GeorgeShopAndRecipe.Infrastructure.Data.SeedDb
 
         public ApplicationUser GuestUser { get; set; }
 
+        public ApplicationUser AdminUser { get; set; }
+
+        public RecipeDeveloper AdminRecipeDeveloper { get; set; }
+
         public RecipeDeveloper RecipeDeveloper { get; set; }
 
 
@@ -65,7 +69,10 @@ namespace GeorgeShopAndRecipe.Infrastructure.Data.SeedDb
                 UserName = "recipeDeveloper@mail.com",
                 NormalizedEmail = "recipeDeveloper@mail.com",
                 Email = "recipeDeveloper@mail.com",
-                NormalizedUserName = "recipeDeveloper@mail.com"
+                NormalizedUserName = "recipeDeveloper@mail.com",
+                FirstName = "Andreikata",
+                LastName = "Georgiev"
+
             };
 
             RecipeDeveloperUser.PasswordHash = hasher.HashPassword(RecipeDeveloperUser, "recipeDeveloper123");
@@ -76,10 +83,26 @@ namespace GeorgeShopAndRecipe.Infrastructure.Data.SeedDb
                 UserName = "guest@mail.com",
                 NormalizedUserName = "guest@mail.com",
                 Email = "guest@mail.com",
-                NormalizedEmail = "guest@mail.com"
+                NormalizedEmail = "guest@mail.com",
+                FirstName = "Ivan",
+                LastName = "Lainqnov"
             };
 
             GuestUser.PasswordHash = hasher.HashPassword(RecipeDeveloperUser, "guest123");
+
+            AdminUser = new ApplicationUser()
+            {
+                Id = "98767df8-9197-416f-988d-8b4e7a7aa218",
+                UserName = "admin@mail.com",
+                NormalizedUserName = "ADMIN@MAIL.COM",
+                Email = "admin@mail.com",
+                NormalizedEmail = "ADMIN@MAIL.COM",
+                FirstName = "Great",
+                LastName = "Admin"
+            };
+
+            AdminUser.PasswordHash =
+                hasher.HashPassword(AdminUser, "admin123");
         }
 
         private void SeedRecipeDevelopers()
@@ -89,6 +112,13 @@ namespace GeorgeShopAndRecipe.Infrastructure.Data.SeedDb
                 Id = 1,
                 Name = "Ivan Mihailov",
                 UserId = RecipeDeveloperUser.Id
+            };
+
+            AdminRecipeDeveloper = new RecipeDeveloper()
+            {
+                Id = 11,
+                Name = "Georgi Kostadinov",
+                UserId = AdminUser.Id
             };
         }
 
