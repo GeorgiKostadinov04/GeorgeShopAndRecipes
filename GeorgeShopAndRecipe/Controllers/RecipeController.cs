@@ -126,7 +126,8 @@ namespace GeorgeShopAndRecipe.Controllers
                 return BadRequest();
             }
 
-            if(await recipeService.HasRecipeDeveloperWithIdAsync(id, User.Id()) == false)
+            if(await recipeService.HasRecipeDeveloperWithIdAsync(id, User.Id()) == false
+                && User.IsAdmin() == false)
             {
                 return Unauthorized();
             }
@@ -145,7 +146,8 @@ namespace GeorgeShopAndRecipe.Controllers
                 return BadRequest();
             }
 
-            if (await recipeService.HasRecipeDeveloperWithIdAsync(id, User.Id()) == false)
+            if (await recipeService.HasRecipeDeveloperWithIdAsync(id, User.Id()) == false
+                && User.IsAdmin() == false)
             {
                 return Unauthorized();
             }
@@ -177,7 +179,8 @@ namespace GeorgeShopAndRecipe.Controllers
                 return BadRequest();
             }
 
-            if(await recipeService.HasRecipeDeveloperWithIdAsync(id, User.Id()) == false)
+            if(await recipeService.HasRecipeDeveloperWithIdAsync(id, User.Id()) == false 
+                && User.IsAdmin() == false)
             {
                 return Unauthorized();
             }
@@ -203,7 +206,8 @@ namespace GeorgeShopAndRecipe.Controllers
                 return BadRequest();
             }
 
-            if (await recipeService.HasRecipeDeveloperWithIdAsync(model.Id, User.Id()) == false)
+            if (await recipeService.HasRecipeDeveloperWithIdAsync(model.Id, User.Id()) == false 
+                && User.IsAdmin() == false)
             {
                 return Unauthorized();
             }

@@ -13,7 +13,8 @@
                
             @if (this.User.Identity.IsAuthenticated)
             {
-                if (await recipeService.HasRecipeDeveloperWithIdAsync(Model.Id, User.Id()))
+                if (await recipeService.HasRecipeDeveloperWithIdAsync(Model.Id, User.Id())
+                || User.IsAdmin())
                 {
                     <a asp-controller="Recipe" asp-action="Edit" asp-route-id="@Model.Id"
                        class="btn btn-warning">Edit</a>

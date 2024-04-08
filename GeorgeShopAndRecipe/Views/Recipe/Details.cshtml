@@ -21,7 +21,8 @@
             <div class="form-inline">
                 @if (this.User.Identity.IsAuthenticated)
                 {
-                    if(await recipeService.HasRecipeDeveloperWithIdAsync(Model.Id, User.Id()))
+                    if(await recipeService.HasRecipeDeveloperWithIdAsync(Model.Id, User.Id())
+                    || User.IsAdmin())
                     {
                         <a class="btn btn-warning" asp-controller="Recipe" asp-action="Edit"
                            asp-route-id="@Model.Id">Edit</a>
