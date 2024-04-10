@@ -22,6 +22,7 @@ namespace GeorgeShopAndRecipe.Core.Services
         public async Task<StatisticsServiceModel> TotalAsync()
         {
             int totalRecipes = await repository.AllReadOnly<Recipe>()
+                .Where(r => r.IsApproved)
                 .CountAsync();
 
             return new StatisticsServiceModel()

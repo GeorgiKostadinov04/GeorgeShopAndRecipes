@@ -23,7 +23,8 @@ namespace GeorgeShopAndRecipe.Core.Services
 
         public async Task<RecipeQueryServiceModel> AllAsync(string? category = null, string? searchTerm = null, int currentPage = 1, int recipesPerPage = 1)
         {
-            var recipesToShow = repository.AllReadOnly<Recipe>();
+            var recipesToShow = repository.AllReadOnly<Recipe>()
+                .Where(r => r.IsApproved);
 
             if(category != null)
             {
@@ -85,6 +86,7 @@ namespace GeorgeShopAndRecipe.Core.Services
         public async Task<IEnumerable<RecipeServiceModel>> AllRecipesByRecipeDeveloperIdAsync(int recipeDeveloperId)
         {
             return await repository.AllReadOnly<Recipe>()
+                .Where(r => r.IsApproved)
                 .Where(r => r.RecipeDeveloperId == recipeDeveloperId)
                 .ProjectToRecipeServiceModel() 
                 .ToListAsync();
@@ -144,6 +146,7 @@ namespace GeorgeShopAndRecipe.Core.Services
         public async Task<RecipeFormModel?> GetRecipeFormModelByIdAsync(int id)
         {
             var recipe =  await repository.AllReadOnly<Recipe>()
+                .Where(r=> r.IsApproved)
                 .Where(r => r.Id == id)
                 .Select(r => new RecipeFormModel()
                 {
@@ -179,6 +182,7 @@ namespace GeorgeShopAndRecipe.Core.Services
         {
             return await repository
                 .AllReadOnly<Infrastructure.Data.Models.Recipe>()
+                .Where(r=>r.IsApproved)
                 .OrderByDescending(x => x.Id)
                 .Take(3)
                 .Select(x => new RecipeIndexServiceModel()
@@ -193,6 +197,7 @@ namespace GeorgeShopAndRecipe.Core.Services
         public async Task<RecipeDetailsServiceModel> RecipeDetailsByIdAsync(int id)
         {
             return await repository.AllReadOnly<Recipe>()
+                .Where(r => r.IsApproved)
                 .Where(r => r.Id == id)
                 .Select(r => new RecipeDetailsServiceModel()
                 {

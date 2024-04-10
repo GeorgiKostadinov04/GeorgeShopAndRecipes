@@ -31,6 +31,9 @@ namespace GeorgeShopAndRecipe.Infrastructure.Data.Models
         [Comment("Recipe image url")]
         public string ImageUrl {  get; set; } = string.Empty;
 
+        [Comment("Is a recipe approved by admin")]
+        public bool IsApproved { get; set; }
+
         [Required]
         
         public int RecipeDeveloperId { get; set; }
