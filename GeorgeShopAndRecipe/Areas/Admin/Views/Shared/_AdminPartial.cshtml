@@ -1,0 +1,38 @@
+﻿@using GeorgeShopAndRecipe.Infrastructure.Data.Models
+@using Microsoft.AspNetCore.Identity
+@using System.Security.Claims
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@inject IRecipeDeveloperService recipeDeveloperService
+
+@{
+    string username = string.Empty;
+
+    if (SignInManager.IsSignedIn(User))
+    {
+        username = User.FindFirstValue(GeorgeShopAndRecipe.Infrastructure.Data.Constants.ClaimConstants.UserFullNameType) ?? string.Empty;
+    }
+}
+
+<ul class="navbar-nav">
+@if (SignInManager.IsSignedIn(User))
+{
+        
+    <li class="nav-item">
+        <a  class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @username!</a>
+    </li>
+    
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="Admin" asp-controller="Home" asp-action="Index" title="Back">Public Interface</a>
+        </li>
+}
+else
+{
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
+    </li>
+}
+</ul>
