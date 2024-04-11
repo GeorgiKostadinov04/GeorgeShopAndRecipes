@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
+using static GeorgeShopAndRecipe.Infrastructure.Data.Constants.ClaimConstants;
 
 namespace GeorgeShopAndRecipe.Infrastructure.Data.SeedDb
 {
@@ -40,9 +41,13 @@ namespace GeorgeShopAndRecipe.Infrastructure.Data.SeedDb
 
         public ApplicationUser RecipeDeveloperUser { get; set; }
 
+        public IdentityUserClaim<string> RecipeDeveloperUserClaim { get; set; }
         public ApplicationUser GuestUser { get; set; }
 
+        public IdentityUserClaim<string> GuestUserClaim { get; set; }
         public ApplicationUser AdminUser { get; set; }
+
+        public IdentityUserClaim<string> AdminUserClaim { get; set; }
 
         public RecipeDeveloper AdminRecipeDeveloper { get; set; }
 
@@ -71,8 +76,16 @@ namespace GeorgeShopAndRecipe.Infrastructure.Data.SeedDb
                 Email = "recipeDeveloper@mail.com",
                 NormalizedUserName = "recipeDeveloper@mail.com",
                 FirstName = "Andreikata",
-                LastName = "Georgiev"
+                LastName = "Andreikata"
 
+            };
+
+            RecipeDeveloperUserClaim = new IdentityUserClaim<string>()
+            {
+                Id = 10,
+                ClaimType = UserFullNameType,
+                ClaimValue = "Andreikata Andreikata",
+                UserId = "dea12856-c198-4129-b3f3-b893d8395082"
             };
 
             RecipeDeveloperUser.PasswordHash = hasher.HashPassword(RecipeDeveloperUser, "recipeDeveloper123");
@@ -88,6 +101,14 @@ namespace GeorgeShopAndRecipe.Infrastructure.Data.SeedDb
                 LastName = "Lainqnov"
             };
 
+            GuestUserClaim = new IdentityUserClaim<string>()
+            {
+                Id = 11,
+                ClaimType = UserFullNameType,
+                ClaimValue = "Ivan Lainqnov",
+                UserId = "6d5800ce - d726 - 4fc8 - 83d9 - d6b3ac1f591e"
+            };
+
             GuestUser.PasswordHash = hasher.HashPassword(RecipeDeveloperUser, "guest123");
 
             AdminUser = new ApplicationUser()
@@ -99,6 +120,14 @@ namespace GeorgeShopAndRecipe.Infrastructure.Data.SeedDb
                 NormalizedEmail = "ADMIN@MAIL.COM",
                 FirstName = "Great",
                 LastName = "Admin"
+            };
+
+            AdminUserClaim = new IdentityUserClaim<string>()
+            {
+                Id = 12,
+                ClaimType = UserFullNameType,
+                ClaimValue = "Great Admin",
+                UserId = "98767df8-9197-416f-988d-8b4e7a7aa218"
             };
 
             AdminUser.PasswordHash =

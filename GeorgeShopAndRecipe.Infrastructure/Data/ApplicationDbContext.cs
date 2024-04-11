@@ -64,6 +64,7 @@ namespace GeorgeShopAndRecipe.Infrastructure.Data
             builder.ApplyConfiguration(new SupplierConfiguration());
             builder.ApplyConfiguration(new IngredientConfiguration());
             builder.ApplyConfiguration(new CategoryConfiguration());
+            builder.ApplyConfiguration(new UserClaimsConfiguration());
 
             base.OnModelCreating(builder);
         }

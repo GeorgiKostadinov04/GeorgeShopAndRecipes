@@ -101,17 +101,17 @@ namespace GeorgeShopAndRecipe.Infrastructure.Migrations
                         {
                             Id = "dea12856-c198-4129-b3f3-b893d8395082",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "ec921e45-c08b-4b23-bc5c-14860c3814e7",
+                            ConcurrencyStamp = "46559089-e6a4-4324-b95d-f375e0354619",
                             Email = "recipeDeveloper@mail.com",
                             EmailConfirmed = false,
                             FirstName = "Andreikata",
-                            LastName = "Georgiev",
+                            LastName = "Andreikata",
                             LockoutEnabled = false,
                             NormalizedEmail = "recipeDeveloper@mail.com",
                             NormalizedUserName = "recipeDeveloper@mail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEK9fHftQN6gBhoCaGfBe86fw6J9/dMyI0920mFbyAwtSl8iHCduR6SMgWvFCg92Jqw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJQmRUBAVqY49JuTuHk66S9NwvS6rALWJ/7Frm5TX7zrXjZYCWJT2c6HjDNPotMCdQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "442868f8-7c95-4f28-b087-0f8505c389d7",
+                            SecurityStamp = "abd4bd6a-43ec-46d3-9728-b7a0b9f423a0",
                             TwoFactorEnabled = false,
                             UserName = "recipeDeveloper@mail.com"
                         },
@@ -119,7 +119,7 @@ namespace GeorgeShopAndRecipe.Infrastructure.Migrations
                         {
                             Id = "6d5800ce-d726-4fc8-83d9-d6b3ac1f591e",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "28be9bb8-88eb-4637-9161-7a7c72d47820",
+                            ConcurrencyStamp = "f196d1d8-bfe8-4a74-aee3-689523fabbe7",
                             Email = "guest@mail.com",
                             EmailConfirmed = false,
                             FirstName = "Ivan",
@@ -127,9 +127,9 @@ namespace GeorgeShopAndRecipe.Infrastructure.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "guest@mail.com",
                             NormalizedUserName = "guest@mail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEPzyHY4mAxqI93KW40XZOZ+ZqcUiupjADJk3AMhQSqbZ5hC/mjGMZWGURP+SwUxd3A==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEGXiTpWUeTlHxx4/BULLgl2oSe8qMUHzB+EGLkw08mlOZk0zUu4m3NU2Aj6NJ6C4tw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "88d8aa7e-8cff-4784-bd19-48128943d637",
+                            SecurityStamp = "f97dbeb8-509c-42ff-86db-77774d725f1e",
                             TwoFactorEnabled = false,
                             UserName = "guest@mail.com"
                         },
@@ -137,7 +137,7 @@ namespace GeorgeShopAndRecipe.Infrastructure.Migrations
                         {
                             Id = "98767df8-9197-416f-988d-8b4e7a7aa218",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "27c5859c-d7a8-4bba-ac19-5712ea3fb0d4",
+                            ConcurrencyStamp = "21e27697-469a-42ac-a5cb-8fb668d13845",
                             Email = "admin@mail.com",
                             EmailConfirmed = false,
                             FirstName = "Great",
@@ -145,9 +145,9 @@ namespace GeorgeShopAndRecipe.Infrastructure.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@MAIL.COM",
                             NormalizedUserName = "ADMIN@MAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAECKUaS2an/AS9AjT9p1WlwFpYDZXG8jqU4M5qJHr/owcFeomFyionKVkjewWPNRyFA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEB63ISvJdjQEJnp5Ljj+AnfxiU6LIBLYydxdrPUosKiv1zqFo4TgrHWO6HaPqM+UuA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "0793dda0-559c-4d15-bcac-179835304acb",
+                            SecurityStamp = "b8eb532d-c2bc-4225-92f6-92d64fba2997",
                             TwoFactorEnabled = false,
                             UserName = "admin@mail.com"
                         });
@@ -595,6 +595,29 @@ namespace GeorgeShopAndRecipe.Infrastructure.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("AspNetUserClaims", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 10,
+                            ClaimType = "user:fullname",
+                            ClaimValue = "Andreikata Andreikata",
+                            UserId = "dea12856-c198-4129-b3f3-b893d8395082"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            ClaimType = "user:fullname",
+                            ClaimValue = "Ivan Lainqnov",
+                            UserId = "6d5800ce - d726 - 4fc8 - 83d9 - d6b3ac1f591e"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            ClaimType = "user:fullname",
+                            ClaimValue = "Great Admin",
+                            UserId = "98767df8-9197-416f-988d-8b4e7a7aa218"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
