@@ -16,6 +16,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddScoped<IRecipeService, RecipeService>();
             services.AddScoped<IRecipeDeveloperService, RecipeDeveloperService>();
             services.AddScoped<IStatisticService, StatisticService>();
+            services.AddScoped<IUserService, UserService>();
             return services;
         }
 

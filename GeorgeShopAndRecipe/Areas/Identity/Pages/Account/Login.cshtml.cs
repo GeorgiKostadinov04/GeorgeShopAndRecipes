@@ -15,7 +15,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using GeorgeShopAndRecipe.Infrastructure.Data.Models;
-using static GeorgeShopAndRecipe.Core.Constants.RoleConstants;
+using static GeorgeShopAndRecipe.Core.Constants.AdministratorConstants;
 
 namespace GeorgeShopAndRecipe.Areas.Identity.Pages.Account
 {

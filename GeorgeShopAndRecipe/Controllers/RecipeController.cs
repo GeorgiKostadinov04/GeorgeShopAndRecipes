@@ -45,6 +45,11 @@ namespace GeorgeShopAndRecipe.Controllers
             var userId = User.Id();
             IEnumerable<RecipeServiceModel> model;
 
+            if (User.IsAdmin())
+            {
+                return RedirectToAction("Mine", "Recipe", new { area = "Admin" });
+            }
+
             int recipeDeveloperId = await recipeDeveloperService.GetRecipeDeveloperIdAsync(userId) ?? 0;
             model = await recipeService.AllRecipesByRecipeDeveloperIdAsync(recipeDeveloperId);
             

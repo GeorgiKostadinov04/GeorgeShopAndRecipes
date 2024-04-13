@@ -92,6 +92,18 @@ namespace GeorgeShopAndRecipe.Core.Services
                 .ToListAsync();
         }
 
+        public async Task ApproveRecipeAsync(int recipeId)
+        {
+            var recipe = await repository.GetByIdAsync<Recipe>(recipeId);
+
+            if(recipe != null && recipe.IsApproved == false)
+            {
+                recipe.IsApproved = true;
+
+                await repository.SaveChangesAsync();
+            }
+        }
+
         public Task<bool> CategoryExistsAsync(int categoryId)
         {
             return repository.AllReadOnly<Category>()
@@ -164,6 +176,20 @@ namespace GeorgeShopAndRecipe.Core.Services
 
             }
             return recipe;
+        }
+
+        public async Task<IEnumerable<RecipeServiceModel>> GetUnApprovedAsync()
+        {
+            return await repository.AllReadOnly<Recipe>()
+                .Where(r => r.IsApproved == false)
+                .Select(r => new RecipeServiceModel()
+                {
+                    Name = r.Name,
+                    WayOfMaking = r.WayOfMaking,
+                    ImageUrl = r.ImageUrl,
+                    Id = r.Id,
+                })
+                .ToListAsync();
         }
 
         public async Task<bool> HasRecipeDeveloperWithIdAsync(int recipeId, string userId)

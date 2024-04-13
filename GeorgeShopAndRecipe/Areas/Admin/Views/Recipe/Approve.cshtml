@@ -1,0 +1,22 @@
+﻿@model IEnumerable<RecipeServiceModel>
+
+@{
+    ViewBag.Title = "Approve";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+<h4>Recipes to approve</h4>
+
+@if (!Model.Any())
+{
+    <h2 class="text-center">You have no recipes to approve!</h2>
+}
+
+<div class="row">
+    @foreach (var recipe in Model)
+    {
+        @await Html.PartialAsync("~/Areas/Admin/Views/Shared/_ApproveRecipePartial.cshtml", recipe)
+    }
+</div>

@@ -1,6 +1,6 @@
 ﻿using GeorgeShopAndRecipe.Infrastructure.Data.Models;
 using Microsoft.AspNetCore.Identity;
-using static GeorgeShopAndRecipe.Core.Constants.RoleConstants;
+using static GeorgeShopAndRecipe.Core.Constants.AdministratorConstants;
 namespace Microsoft.AspNetCore.Builder
 {
     public static class ApplicationBuilderExtensions

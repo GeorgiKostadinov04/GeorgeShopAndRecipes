@@ -37,5 +37,9 @@ namespace GeorgeShopAndRecipe.Core.Contracts.Recipe
         Task<RecipeFormModel?> GetRecipeFormModelByIdAsync(int id);
 
         Task DeleteAsync(int recipeId);
+
+        Task ApproveRecipeAsync(int recipeId);
+
+        Task<IEnumerable<RecipeServiceModel>> GetUnApprovedAsync();
     }
 }

@@ -15,5 +15,7 @@ namespace GeorgeShopAndRecipe.Infrastructure.Data.Models
         [MaxLength(ApplicationUserLastNameMinLength)]
         [PersonalData]
         public string LastName { get; set; } = string.Empty ;
+
+        public RecipeDeveloper? RecipeDeveloper { get; set; } 
     }
 }

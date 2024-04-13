@@ -1,5 +1,5 @@
 ﻿using System.Security.Claims;
-using static GeorgeShopAndRecipe.Core.Constants.RoleConstants;
+using static GeorgeShopAndRecipe.Core.Constants.AdministratorConstants;
 
 namespace GeorgeShopAndRecipe.Extensions
 {
