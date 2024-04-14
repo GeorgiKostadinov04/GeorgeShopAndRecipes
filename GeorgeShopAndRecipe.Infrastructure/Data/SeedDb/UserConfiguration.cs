@@ -16,7 +16,7 @@ namespace GeorgeShopAndRecipe.Infrastructure.Data.SeedDb
         {
             var data = new SeedData();
 
-            builder.HasData(new ApplicationUser[] {data.RecipeDeveloperUser, data.GuestUser, data.AdminUser });
+            builder.HasData(new ApplicationUser[] {data.RecipeDeveloperUser, data.GuestUser, data.FirstAdminUser });
         }
     }
 }

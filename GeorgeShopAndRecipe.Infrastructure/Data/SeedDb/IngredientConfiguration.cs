@@ -24,7 +24,12 @@ namespace GeorgeShopAndRecipe.Infrastructure.Data.SeedDb
                 data.FifthIngredient, data.SixthIngredient,
                 data.SeventhIngredient, data.EigthIngredient,
                 data.NinthIngredient, data.TenthIngredient,
-                data.ElevenIngredient, data.TwelveIngredient
+                data.ElevenIngredient, data.TwelveIngredient,
+                data.ThirteenIngredient, data.FourteenIngredient,
+                data.FifteenIngredient,data.SixteenIngredient,
+                data.SeventeenIngredient, data.EighteenIngredient,
+                data.NineteenIngredient, data.TwentyIngredient,
+                data.TwentyOneIngredient, data.TwentyTwoIngredient
             });
         }
     }
