@@ -10,14 +10,16 @@ namespace GeorgeShopAndRecipe.Core.Models.Recipe
     public class RecipeFormModel : IRecipeModel
     {
         [Required(ErrorMessage =RequiredMessage)]
-        [StringLength(RecipeNameMaxLength, MinimumLength = RecipeNameMinLength,
-            ErrorMessage = LengthMessage)]
+        
+        [StringLength(RecipeNameMaxLength,
+            MinimumLength = RecipeNameMinLength,
+            ErrorMessage = SymbolMessage)]
         public string Name { get; set; } = null!;
 
 
         [Required(ErrorMessage =RequiredMessage)]
         [StringLength(RecipeWayOfMakingMaxLength, MinimumLength = RecipeWayOfMakingMinLength,
-            ErrorMessage = LengthMessage)]
+            ErrorMessage = SymbolMessage)]
         [Display(Name = "Way of making")]
         public string WayOfMaking { get; set; } = null!;
 

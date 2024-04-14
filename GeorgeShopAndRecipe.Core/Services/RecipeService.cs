@@ -223,7 +223,7 @@ namespace GeorgeShopAndRecipe.Core.Services
         public async Task<RecipeDetailsServiceModel> RecipeDetailsByIdAsync(int id)
         {
             return await repository.AllReadOnly<Recipe>()
-                .Where(r => r.IsApproved)
+                
                 .Where(r => r.Id == id)
                 .Select(r => new RecipeDetailsServiceModel()
                 {

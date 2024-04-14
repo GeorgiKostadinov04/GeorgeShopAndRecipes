@@ -10,6 +10,10 @@ namespace GeorgeShopAndRecipe.Core.Constants
     {
         public const string RequiredMessage = "The {0} field is required";
 
-        public const string LengthMessage = "Length must be between {1} and {0} characters long";
+        public const string SymbolMessage = "Invalid amount of symbols!";
+
+        public const string UserMessageSuccess = "UserMessageSuccess";
+
+        public const string UserMessageError = "UserMessageError";
     }
 }

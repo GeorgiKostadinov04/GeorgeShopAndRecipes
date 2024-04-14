@@ -8,7 +8,7 @@ namespace GeorgeShopAndRecipe.Core.Models.RecipeDeveloper
     {
         [Required(ErrorMessage = RequiredMessage)]
         [StringLength(RecipeDeveloperNameMaxLength, MinimumLength = RecipeDeveloperNameMinLength
-            ,ErrorMessage = LengthMessage)]
+            ,ErrorMessage = SymbolMessage)]
         [Display(Name = "Name")]
         public string Name { get; set; } = null!;
     }

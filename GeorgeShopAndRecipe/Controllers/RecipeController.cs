@@ -8,6 +8,7 @@ using GeorgeShopAndRecipe.Extensions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using static GeorgeShopAndRecipe.Core.Constants.MessageConstants;
 
 namespace GeorgeShopAndRecipe.Controllers
 {
@@ -112,6 +113,8 @@ namespace GeorgeShopAndRecipe.Controllers
                 model.Categories = await recipeService.AllCategoriesAsync();
 
                 model.Ingredients = await recipeService.AllIngredientsAsync();
+
+                TempData[UserMessageSuccess] = "You have added a recipe!";
 
                 return View(model);
             }

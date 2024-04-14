@@ -1,6 +1,6 @@
 ﻿
 using GeorgeShopAndRecipe.Infrastructure.Data;
-using GeorgeShopAndRecipe.Infrastructure.Migrations;
+using GeorgeShopAndRecipe.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 
 namespace GeorgeShopAndRecipe.Infrastructure.Common

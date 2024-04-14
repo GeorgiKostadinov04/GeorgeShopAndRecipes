@@ -12,12 +12,12 @@ namespace GeorgeShopAndRecipe.Core.Models.Recipe
 
         [Required(ErrorMessage = RequiredMessage)]
         [StringLength(RecipeNameMaxLength, MinimumLength = RecipeNameMinLength,
-            ErrorMessage = LengthMessage)]
+            ErrorMessage = SymbolMessage)]
         public string Name { get; set; } = string.Empty;
 
         [Required(ErrorMessage = RequiredMessage)]
         [StringLength(RecipeWayOfMakingMaxLength, MinimumLength = RecipeWayOfMakingMinLength,
-           ErrorMessage = LengthMessage)]
+           ErrorMessage = SymbolMessage)]
         [Display(Name = "Way of making")]
         public string WayOfMaking { get; set; } = string.Empty;
 
