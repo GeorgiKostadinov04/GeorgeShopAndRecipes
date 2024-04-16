@@ -3,6 +3,7 @@ using GeorgeShopAndRecipe.Core.Models.Home;
 using GeorgeShopAndRecipe.Core.Models.Recipe;
 using GeorgeShopAndRecipe.Infrastructure.Common;
 using GeorgeShopAndRecipe.Infrastructure.Data.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -15,10 +16,12 @@ namespace GeorgeShopAndRecipe.Core.Services
     public class RecipeService : IRecipeService
     {
         private readonly IRepository repository;
+        private readonly UserManager<ApplicationUser> userManager;
 
-        public RecipeService(IRepository _repository)
+        public RecipeService(IRepository _repository, UserManager<ApplicationUser> _userManager)
         {
             repository = _repository;
+            userManager = _userManager;
         }
 
         public async Task<RecipeQueryServiceModel> AllAsync(string? category = null, string? searchTerm = null, int currentPage = 1, int recipesPerPage = 1)
@@ -119,7 +122,7 @@ namespace GeorgeShopAndRecipe.Core.Services
                 WayOfMaking = model.WayOfMaking,
                 ImageUrl = model.ImageUrl,
                 CategoryId = model.CategoryId,
-
+                
             };
 
             await repository.AddAsync(recipe);
@@ -173,7 +176,7 @@ namespace GeorgeShopAndRecipe.Core.Services
             if(recipe != null)
             {
                 recipe.Categories = await AllCategoriesAsync();
-
+                recipe.Ingredients = await AllIngredientsAsync();
             }
             return recipe;
         }
@@ -220,6 +223,22 @@ namespace GeorgeShopAndRecipe.Core.Services
                 .ToListAsync();
         }
 
+        public async Task<IEnumerable<string>> GetIngredientsNamesByIdAsync(int id)
+        {
+            Recipe recipe = await repository.GetByIdAsync<Recipe>(id);
+
+            List<string> names = new List<string>();
+
+            foreach(var ingredient in recipe.IngredientsRecipes)
+            {
+                names.Add(ingredient.Ingredient.Name);
+            }
+               
+
+            return names;
+
+        }
+
         public async Task<RecipeDetailsServiceModel> RecipeDetailsByIdAsync(int id)
         {
             return await repository.AllReadOnly<Recipe>()
@@ -236,7 +255,7 @@ namespace GeorgeShopAndRecipe.Core.Services
                     Category = r.Category.Name,
                     ImageUrl = r.ImageUrl,
                     WayOfMaking = r.WayOfMaking,
-
+                    
                 })
                 .FirstAsync();
         }
