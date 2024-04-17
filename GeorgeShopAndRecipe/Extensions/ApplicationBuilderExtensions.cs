@@ -1,5 +1,6 @@
 ﻿using GeorgeShopAndRecipe.Infrastructure.Data.Models;
 using Microsoft.AspNetCore.Identity;
+using System.Data;
 using static GeorgeShopAndRecipe.Core.Constants.AdministratorConstants;
 namespace Microsoft.AspNetCore.Builder
 {
@@ -16,12 +17,13 @@ namespace Microsoft.AspNetCore.Builder
                 var role = new IdentityRole(AdminRole);
                 await roleManager.CreateAsync(role);
 
-                var admin = await userManager.FindByEmailAsync("admin@mail.com");
 
-                if(admin != null)
-                {
-                    await userManager.AddToRoleAsync(admin, role.Name);
-                }
+            }
+            var admin = await userManager.FindByEmailAsync("admin@mail.com");
+
+            if (admin != null)
+            {
+                await userManager.AddToRoleAsync(admin, "Administrator");
             }
         }
     }

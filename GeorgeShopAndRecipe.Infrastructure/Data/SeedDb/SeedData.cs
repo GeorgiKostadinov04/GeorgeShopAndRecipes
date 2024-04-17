@@ -132,7 +132,7 @@ namespace GeorgeShopAndRecipe.Infrastructure.Data.SeedDb
 
             FirstAdminUser = new ApplicationUser()
             {
-                Id = "299e94d7-1a68-4738-9d25-e062394ae0c5 ",
+                Id = "299e94d7-1a68-4738-9d25-e062394ae0c5",
                 UserName = "admin@mail.com",
                 NormalizedUserName = "ADMIN@MAIL.COM",
                 Email = "admin@mail.com",
@@ -157,14 +157,14 @@ namespace GeorgeShopAndRecipe.Infrastructure.Data.SeedDb
         {
             RecipeDeveloper = new RecipeDeveloper()
             {
-                Id = 1,
+                Id = 19,
                 Name = "Ivan Mihailov",
                 UserId = RecipeDeveloperUser.Id
             };
 
             AdminRecipeDeveloper = new RecipeDeveloper()
             {
-                Id = 11,
+                Id = 33,
                 Name = "Georgi Kostadinov",
                 UserId = FirstAdminUser.Id
             };
@@ -464,7 +464,7 @@ namespace GeorgeShopAndRecipe.Infrastructure.Data.SeedDb
                 CategoryId = 5,
                 ImageUrl = "https://www.wandercooks.com/wp-content/uploads/2019/07/bulgarian-shopska-salad-ft2.jpg",
                 RecipeDeveloperId = 1,
-                
+                IsApproved = true,
             };
 
             SecondRecipe = new Recipe()
@@ -475,7 +475,7 @@ namespace GeorgeShopAndRecipe.Infrastructure.Data.SeedDb
                 CategoryId = 6,
                 ImageUrl = "https://casafelice.bg/wp-content/uploads/2020/07/tsezar-1.jpg",
                 RecipeDeveloperId = 1,
-
+                IsApproved = true
 
             };
         }

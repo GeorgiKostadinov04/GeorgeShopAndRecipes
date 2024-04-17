@@ -16,5 +16,7 @@ namespace GeorgeShopAndRecipe.Core.Models.Recipe
 
         public RecipeDeveloperServiceModel RecipeDeveloper { get; set; } = null!;
 
+        public IEnumerable<string> IngredientsNames { get; set; } = new List<string>();
+
     }
 }

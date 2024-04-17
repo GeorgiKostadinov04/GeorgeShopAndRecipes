@@ -1,4 +1,5 @@
 ﻿using GeorgeShopAndRecipe.Core.Contracts;
+using GeorgeShopAndRecipe.Infrastructure.Data.Models;
 using System.ComponentModel.DataAnnotations;
 using static GeorgeShopAndRecipe.Core.Constants.MessageConstants;
 using static GeorgeShopAndRecipe.Infrastructure.Data.Constants.DataConstants;
@@ -31,9 +32,6 @@ namespace GeorgeShopAndRecipe.Core.Models.Recipe
         public int CategoryId { get; set; }
 
         public IEnumerable<RecipeCategoryServiceModel> Categories { get; set; } = new List<RecipeCategoryServiceModel>();
-
-        [Display(Name = "Ingredients")]
-        public ICollection<string> IngredientsName { get; set; } = new List<string>();
 
         [Display(Name = "All Ingredients")]
         public IEnumerable<RecipeIngredientServiceModel> Ingredients { get; set; } = new List<RecipeIngredientServiceModel>();

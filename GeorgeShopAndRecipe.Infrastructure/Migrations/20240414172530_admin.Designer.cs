@@ -4,6 +4,7 @@ using GeorgeShopAndRecipe.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GeorgeShopAndRecipe.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240414172530_admin")]
+    partial class admin
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -101,7 +103,7 @@ namespace GeorgeShopAndRecipe.Infrastructure.Migrations
                         {
                             Id = "1f84eebe-b8ff-4c33-a731-fea2572112ae",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "308797fb-8c22-47b5-8da9-80adf0bb71be",
+                            ConcurrencyStamp = "bd31e913-b001-4a00-9c65-c87ad64e83ab",
                             Email = "recipeDeveloper@mail.com",
                             EmailConfirmed = false,
                             FirstName = "Andrei",
@@ -109,9 +111,9 @@ namespace GeorgeShopAndRecipe.Infrastructure.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "recipeDeveloper@mail.com",
                             NormalizedUserName = "recipeDeveloper@mail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEL+793cpbQm7lK3laYTXDIIDhv+3iLuMSBY3qUpSvkbNXGxy/nLcloRMnKJF7gK3MQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEG2Fv1ywZcjUfwlVbeONWIZKTHjKlzYz5YZcUskAHATL8VX+zPNzUcwtaQ1BUqUiKA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "8f97b7a9-0d2e-4ab9-aec8-18cd03c46ce3",
+                            SecurityStamp = "06acfa6a-53a0-4caf-944c-b2ecf8f44f4b",
                             TwoFactorEnabled = false,
                             UserName = "recipeDeveloper@mail.com"
                         },
@@ -119,7 +121,7 @@ namespace GeorgeShopAndRecipe.Infrastructure.Migrations
                         {
                             Id = "c0518706-d004-453d-930b-ef40cd37d4f0 ",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "7a8203fd-8cb8-4418-9bbe-9879c1eaccd3",
+                            ConcurrencyStamp = "998171a3-f07e-4e53-ac40-b777867f5064",
                             Email = "guest@mail.com",
                             EmailConfirmed = false,
                             FirstName = "Ivan",
@@ -127,17 +129,17 @@ namespace GeorgeShopAndRecipe.Infrastructure.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "guest@mail.com",
                             NormalizedUserName = "guest@mail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEIZWeDqBRsTru30oSFGLPfQta/Y2dlcE1ZU7E83Vgb6PDbl1pnzz899gosfNB4ELMw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEF3y5CH27TBmC946s21Nw9ZfqmTbSPvDbqFtNXDqiDaCyEzZG+3lqx5MzTqapv4JGA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "e630c72e-8684-4dc0-9be6-934e8c4e9db4",
+                            SecurityStamp = "a06bfd43-78e9-4601-958a-3d22e5c1c862",
                             TwoFactorEnabled = false,
                             UserName = "guest@mail.com"
                         },
                         new
                         {
-                            Id = "299e94d7-1a68-4738-9d25-e062394ae0c5",
+                            Id = "299e94d7-1a68-4738-9d25-e062394ae0c5 ",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "508ed0dd-e588-4307-8e3b-85982b8880f8",
+                            ConcurrencyStamp = "a0bbbe2e-de72-4462-98eb-51cb1faa5a13",
                             Email = "admin@mail.com",
                             EmailConfirmed = false,
                             FirstName = "Great",
@@ -145,9 +147,9 @@ namespace GeorgeShopAndRecipe.Infrastructure.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@MAIL.COM",
                             NormalizedUserName = "ADMIN@MAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAENtyHZP+V1z6DpU4aoHNIMrYiIWxePPiK/9bYjk7bJ2zOkiD0STr6aHaUOVXOyIQUA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAELFwyokkpYrx42S+1xIz45ornZJigTXNNs8vNlYdlmcZ1EatR92K88tjqZPRundPzg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "52ba449f-9c41-4f1a-aa3a-705937564118",
+                            SecurityStamp = "6f406a44-c044-4424-bd06-b1cc72173890",
                             TwoFactorEnabled = false,
                             UserName = "admin@mail.com"
                         });
@@ -546,7 +548,7 @@ namespace GeorgeShopAndRecipe.Infrastructure.Migrations
                             Id = 1,
                             CategoryId = 5,
                             ImageUrl = "https://www.wandercooks.com/wp-content/uploads/2019/07/bulgarian-shopska-salad-ft2.jpg",
-                            IsApproved = true,
+                            IsApproved = false,
                             Name = "Шопска салата",
                             RecipeDeveloperId = 1,
                             WayOfMaking = "Нарязваме доматите и краставиците и слагаме олио и сирене отгоре"
@@ -556,7 +558,7 @@ namespace GeorgeShopAndRecipe.Infrastructure.Migrations
                             Id = 2,
                             CategoryId = 6,
                             ImageUrl = "https://casafelice.bg/wp-content/uploads/2020/07/tsezar-1.jpg",
-                            IsApproved = true,
+                            IsApproved = false,
                             Name = "Шопска салата с пилешко",
                             RecipeDeveloperId = 1,
                             WayOfMaking = "Нарязваме доматите и краставиците. След това нарязваме и пилешките гърди и ги слагаме в купата. Накрая слагаме олио и месо"
@@ -600,7 +602,7 @@ namespace GeorgeShopAndRecipe.Infrastructure.Migrations
                         {
                             Id = 33,
                             Name = "Georgi Kostadinov",
-                            UserId = "299e94d7-1a68-4738-9d25-e062394ae0c5"
+                            UserId = "299e94d7-1a68-4738-9d25-e062394ae0c5 "
                         });
                 });
 

@@ -168,13 +168,14 @@ namespace GeorgeShopAndRecipe.Controllers
             if(ModelState.IsValid == false)
             {
                 model.Categories = await recipeService.AllCategoriesAsync();
+                model.Ingredients = await recipeService.AllIngredientsAsync();
 
                 return View(model);
             }
 
             await recipeService.EditAsync(id, model);
 
-            return RedirectToAction(nameof(Details), new { id = 1, information = model.GetInformation() });
+            return RedirectToAction(nameof(All));
         }
 
         [HttpGet]
