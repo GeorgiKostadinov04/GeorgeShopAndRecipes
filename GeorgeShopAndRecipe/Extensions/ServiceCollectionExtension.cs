@@ -1,7 +1,11 @@
-﻿using GeorgeShopAndRecipe.Data;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using System.Runtime.CompilerServices;
+using GeorgeShopAndRecipe.Infrastructure.Data;
+using GeorgeShopAndRecipe.Infrastructure.Common;
+using GeorgeShopAndRecipe.Core.Contracts.Recipe;
+using GeorgeShopAndRecipe.Core.Services;
+using GeorgeShopAndRecipe.Core.Contracts;
+using GeorgeShopAndRecipe.Infrastructure.Data.Models;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -9,6 +13,10 @@ namespace Microsoft.Extensions.DependencyInjection
     {
         public static IServiceCollection AppApplicationServices(this IServiceCollection services)
         {
+            services.AddScoped<IRecipeService, RecipeService>();
+            services.AddScoped<IRecipeDeveloperService, RecipeDeveloperService>();
+            services.AddScoped<IStatisticService, StatisticService>();
+            services.AddScoped<IUserService, UserService>();
             return services;
         }
 
@@ -20,6 +28,8 @@ namespace Microsoft.Extensions.DependencyInjection
 
             services.AddDatabaseDeveloperPageExceptionFilter();
 
+            services.AddScoped<IRepository, Repository>();
+
             return services;
         }
 
@@ -27,7 +37,13 @@ namespace Microsoft.Extensions.DependencyInjection
         {
 
             services
-                .AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddDefaultIdentity<ApplicationUser>(options =>
+                {
+                    options.SignIn.RequireConfirmedAccount = false;
+                    options.Password.RequireNonAlphanumeric = false;
+                    options.Password.RequireDigit = false;
+                })
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             return services;
         }

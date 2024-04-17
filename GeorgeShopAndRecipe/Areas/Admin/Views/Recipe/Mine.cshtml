@@ -1,0 +1,23 @@
+﻿
+@model MyRecipesViewModel
+
+@{
+    ViewBag.Title = "My Recipes";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+<h4>My Added Recipes</h4>
+
+@if (!Model.AddedRecipes.Any())
+{
+    <h2 class="text-center">You have no added recipes yet!</h2>
+}
+
+<div class="row">
+    @foreach (var recipe in Model.AddedRecipes)
+    {
+        @await Html.PartialAsync("~/Views/Shared/_RecipePartial.cshtml", recipe)
+    }
+</div>

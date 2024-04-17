@@ -1,0 +1,13 @@
+﻿@model RecipeFormModel
+@{
+    ViewData["Title"] = "All Recipes";
+}
+
+<h2 class="text-center">@ViewData["Title"]</h2>
+<hr />
+
+<partial name="_RecipeFormPartial" model="@Model" />
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
